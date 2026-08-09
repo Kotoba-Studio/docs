@@ -7,6 +7,8 @@ icon: coins
 
 ## KWorth
 
+<a href="https://github.com/Kotoba-Studio/KWorth/releases/" class="button primary" data-icon="download">Tải bản phát hành</a>
+
 KWorth là plugin **Sell/Worth** cho máy chủ Minecraft. Plugin tập trung vào Sell GUI, SellTool, hệ thống giá và khả năng tùy chỉnh.
 
 ### Điểm nổi bật

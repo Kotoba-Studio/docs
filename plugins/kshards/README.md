@@ -7,6 +7,8 @@ icon: gem
 
 ## KShards
 
+<a href="https://github.com/Kotoba-Studio/KShards/releases/" class="button primary" data-icon="download">Tải bản phát hành</a>
+
 KShards là hệ thống tiền tệ Shards bất đồng bộ cho Paper, Folia và Canvas.
 
 ### Điểm nổi bật

@@ -7,6 +7,8 @@ icon: shop
 
 ## KShop
 
+<a href="https://github.com/Kotoba-Studio/KShop/releases/" class="button primary" data-icon="download">Tải bản phát hành</a>
+
 KShop là shop GUI dành cho Paper, Folia và Canvas.
 
 ### Điểm nổi bật

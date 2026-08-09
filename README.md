@@ -20,7 +20,9 @@ Kotoba Studio phát triển công cụ cho máy chủ Minecraft. Mục tiêu r�
 
 ### Dự án
 
-<table data-view="cards"><thead><tr><th>Dự án nổi bật</th><th data-card-target data-type="content-ref">Tài liệu</th></tr></thead><tbody><tr><td><strong>KOrder</strong><br>Hệ thống Buy Order dành cho máy chủ Minecraft.<br><br>• Tạo và quản lý đơn mua<br>• Giao vật phẩm và Stash<br>• Nhiều giao diện<br>• PlaceholderAPI<br>• Economy integration<br>• Anti-Dupe protection</td><td><a href="plugins/korder/">korder</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th>Dự án</th><th data-card-target data-type="content-ref">Tải xuống</th></tr></thead><tbody><tr><td><strong>KOrder</strong><br>Hệ thống Buy Order dành cho máy chủ Minecraft.</td><td><a href="https://github.com/Kotoba-Studio/KOrder/releases/">https://github.com/Kotoba-Studio/KOrder/releases/</a></td></tr><tr><td><strong>KWorth</strong><br>Hệ thống Sell/Worth với Sell GUI, SellTool và giá vật phẩm.</td><td><a href="https://github.com/Kotoba-Studio/KWorth/releases/">https://github.com/Kotoba-Studio/KWorth/releases/</a></td></tr><tr><td><strong>KShop</strong><br>Shop GUI hỗ trợ nhiều loại economy cho máy chủ Minecraft.</td><td><a href="https://github.com/Kotoba-Studio/KShop/releases/">https://github.com/Kotoba-Studio/KShop/releases/</a></td></tr><tr><td><strong>KShards</strong><br>Hệ thống tiền tệ Shards bất đồng bộ cho máy chủ Minecraft.</td><td><a href="https://github.com/Kotoba-Studio/KShards/releases/">https://github.com/Kotoba-Studio/KShards/releases/</a></td></tr></tbody></table>
+
+<a href="https://github.com/Kotoba-Studio/KOrder/releases/" class="button primary" data-icon="download">Tải KOrder</a> <a href="https://github.com/Kotoba-Studio/KWorth/releases/" class="button primary" data-icon="download">Tải KWorth</a> <a href="https://github.com/Kotoba-Studio/KShop/releases/" class="button primary" data-icon="download">Tải KShop</a> <a href="https://github.com/Kotoba-Studio/KShards/releases/" class="button primary" data-icon="download">Tải KShards</a>
 
 ***
 

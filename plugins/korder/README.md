@@ -7,7 +7,7 @@ icon: envelope
 
 ## KOrder
 
-<a href="./" class="button primary">Tiếng Việt</a> <a href="english/overview.md" class="button secondary">English</a>
+<a href="./" class="button primary">Tiếng Việt</a> <a href="english/overview.md" class="button secondary">English</a> <a href="https://github.com/Kotoba-Studio/KOrder/releases/" class="button primary" data-icon="download">Tải bản phát hành</a>
 
 KOrder là plugin **Buy Order Marketplace** cho máy chủ Minecraft Paper-family.
 
