@@ -28,6 +28,16 @@ gui:
 
 Available styles: `modern`, `king`, `custom`.
 
+`custom` disables locale-owned text. Custom titles support `{page}`, `{pages}`, and `{order}`.
+
+```yaml
+layout:
+  page-size: 45
+
+behavior:
+  direct-deliver: true
+```
+
 ### Economy
 
 ```yaml
@@ -43,6 +53,14 @@ economy:
 | `playerpoints`     | Direct PlayerPoints integration               |
 | `coinsengine`      | CoinsEngine through its Vault provider        |
 | `excellenteconomy` | ExcellentEconomy through its Vault provider   |
+
+`vault` accepts any correctly registered Vault Economy provider. CoinsEngine and ExcellentEconomy have no direct custom-currency IDs.
+
+PlayerPoints uses whole points. Values without an exact representation are rejected, never rounded.
+
+{% hint style="warning" %}
+Never blindly retry an uncertain deposit or withdrawal. Check `/korder admin pending`, `/korder admin tx <id>`, and provider records first.
+{% endhint %}
 
 ### Discord Webhook
 
@@ -62,6 +80,8 @@ discord-webhook:
 ```
 
 Test the webhook with `/korder admin webhook test`.
+
+Webhooks run outside the transaction path. The queue holds up to 256 messages. Webhook failures never roll back or duplicate orders.
 
 ### Orders
 

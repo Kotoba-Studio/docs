@@ -21,16 +21,16 @@ placeholderapi:
 
 | Placeholder                  | Kết quả                         |
 | ---------------------------- | ------------------------------- |
-| `%korder_version%`           | Phiên bản KOrder                |
+| `%korder_version%`           | `R02-v2`                        |
 | `%korder_author%`            | `V3rhs`                         |
 | `%korder_ready%`             | `true` / `false`                |
 | `%korder_locale%`            | Ngôn ngữ hiện tại               |
 | `%korder_economy%`           | Economy provider                |
 | `%korder_economy_mode%`      | Economy mode                    |
 | `%korder_gui%`               | Style hiện tại                  |
-| `%korder_active_orders%`     | Số đơn `ACTIVE` của người chơi  |
+| `%korder_active_orders%`     | Số đơn `ACTIVE`, chưa hết hạn   |
 | `%korder_has_active_orders%` | Có đơn đang hoạt động hay không |
-| `%korder_stash%`             | Số entry đang chờ trong Stash   |
+| `%korder_stash%`             | Số Stash entry `AVAILABLE`      |
 | `%korder_has_stash%`         | Có hàng chờ nhận hay không      |
 
 Alias có sẵn:
@@ -43,4 +43,8 @@ Alias có sẵn:
 %korder_pending_deliveries%
 ```
 
+Khi không có player, placeholder theo player trả `0` hoặc `false`.
+
 Các placeholder liên quan database dùng cache và refresh bất đồng bộ. KOrder không query SQLite đồng bộ mỗi lần scoreboard hoặc TAB cập nhật.
+
+Cache bị invalidated sau thay đổi order/Stash và được xóa khi reload hoặc disable.

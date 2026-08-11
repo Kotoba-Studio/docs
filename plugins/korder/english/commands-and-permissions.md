@@ -13,21 +13,22 @@ KOrder uses `/korder` with `/order`, `/orders`, and `/donhang` aliases.
 
 ### Player commands
 
-| Command                                     | Permission       | Description                        |
-| ------------------------------------------- | ---------------- | ---------------------------------- |
-| `/order`                                    | `korder.use`     | Open the Order marketplace         |
-| `/order help`                               | —                | View help                          |
-| `/order browse [keyword]`                   | `korder.use`     | View public orders                 |
-| `/order search <keyword>`                   | `korder.use`     | Search orders                      |
-| `/order create`                             | `korder.create`  | Open order creation                |
-| `/order create <material> <amount> <price>` | `korder.create`  | Create an order using a Material   |
-| `/order createhand`                         | `korder.create`  | Create an order from the held item |
-| `/order mine`                               | `korder.use`     | View My Orders                     |
-| `/order stash`                              | `korder.use`     | Collect items                      |
-| `/order deliver <id> <amount>`              | `korder.deliver` | Deliver items                      |
-| `/order add <id> <amount>`                  | `korder.create`  | Add quantity to an order           |
+| Command                                      | Permission       | Description                      |
+| -------------------------------------------- | ---------------- | -------------------------------- |
+| `/korder`                                    | `korder.use`     | Open the marketplace             |
+| `/korder help`                               | —                | View localized help              |
+| `/korder browse [query]`                     | `korder.use`     | Open public orders               |
+| `/korder public [query]`                     | `korder.use`     | `browse` compatibility alias     |
+| `/korder search <query>`                     | `korder.use`     | Suggest buyers and search orders |
+| `/korder create`                             | `korder.create`  | Open order creation              |
+| `/korder create <material> <amount> <price>` | `korder.create`  | Create using a Material          |
+| `/korder createhand`                         | `korder.create`  | Create from the held item        |
+| `/korder mine` / `my`                        | `korder.use`     | View active, unexpired orders    |
+| `/korder stash` / `collect`                  | `korder.use`     | Open Stash                       |
+| `/korder deliver <id> <amount>` / `giao`     | `korder.deliver` | Deliver items                    |
+| `/korder add <id> <amount>`                  | `korder.create`  | Increase an order                |
 
-Available aliases: `public`, `my`, `collect`, `giao`, `increase`, `them`.
+`increase` and `them` are aliases of `add`.
 
 ### Administrator commands
 
@@ -38,6 +39,8 @@ Available aliases: `public`, `my`, `collect`, `giao`, `increase`, `them`.
 | `/korder admin pending`      | `korder.admin` | View transactions requiring review              |
 | `/korder admin tx <id>`      | `korder.admin` | View one transaction                            |
 | `/korder admin webhook test` | `korder.admin` | Test the Discord Webhook                        |
+| `/korder admin`              | `korder.admin` | View administrator help                         |
+| `/korder admin reload`       | `korder.admin` | Alias of `/korder reload`                       |
 
 ### Permission nodes
 
@@ -63,4 +66,4 @@ korder.limit.100
 korder.limit.200
 ```
 
-When several limit permissions apply, KOrder uses the highest value.
+When several limit permissions apply, KOrder uses the highest value over `orders.default-limit`.

@@ -15,7 +15,9 @@ Người mua chọn vật phẩm, số lượng và giá mỗi món. KOrder xác
 
 ### Giao hàng
 
-Người bán có thể giao một phần hoặc toàn bộ số lượng còn thiếu. GUI chỉ chọn số lượng. Item thật chỉ bị lấy khi chọn **Confirm** và transaction được kiểm tra lại.
+Người bán có thể giao một phần hoặc toàn bộ số lượng còn thiếu. Delivery GUI chỉ là phần xem trước.
+
+KOrder chỉ lấy item thật sau **Confirm**. Khi đó, hệ thống re-check order và inventory dưới transaction guard.
 
 ### Quản lý đơn
 
@@ -27,7 +29,9 @@ Người bán có thể giao một phần hoặc toàn bộ số lượng còn t
 
 ### Stash
 
-Hàng đã giao được lưu trong Stash. Nếu inventory không đủ chỗ, phần chưa nhận vẫn được giữ lại.
+Hàng đã giao được lưu trong Stash bền vững. Nếu inventory không đủ chỗ, phần chưa nhận vẫn được giữ lại.
+
+Khi claim, KOrder đánh dấu entry là `CLAIMING` trước khi lưu player. Điều này ưu tiên chống nhân bản sau crash.
 
 ### Giao diện
 
@@ -45,8 +49,19 @@ king.yml
 custom.yml
 ```
 
+`custom.yml` giữ text riêng khi đổi locale. Slot control phải nằm trong `0..53` và không được trùng.
+
+`page-size` được giới hạn trong `9..45`. Stash luôn hiển thị 45 entry mỗi trang.
+
+### Tìm kiếm và input
+
+KOrder ưu tiên native Paper Dialog. Bedrock dùng Floodgate/Geyser form khi khả dụng.
+
+Các client không hỗ trợ Dialog dùng virtual Anvil khi được bật. R02-v2 không đặt sign tạm trong world.
+
 ### Tích hợp
 
 * PlaceholderAPI và Discord Webhook.
-* Vault, VaultUnlocked và PlayerPoints.
-* CoinsEngine, ExcellentEconomy, Geyser và Floodgate khi khả dụng.
+* Vault, VaultUnlocked v2 và PlayerPoints.
+* CoinsEngine và ExcellentEconomy qua Vault provider.
+* Geyser và Floodgate khi khả dụng.

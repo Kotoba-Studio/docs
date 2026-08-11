@@ -13,21 +13,22 @@ KOrder dùng `/korder` với các alias `/order`, `/orders` và `/donhang`.
 
 ### Người chơi
 
-| Lệnh                                        | Quyền            | Chức năng                |
-| ------------------------------------------- | ---------------- | ------------------------ |
-| `/order`                                    | `korder.use`     | Mở chợ Order             |
-| `/order help`                               | —                | Xem trợ giúp             |
-| `/order browse [từ khóa]`                   | `korder.use`     | Xem đơn công khai        |
-| `/order search <từ khóa>`                   | `korder.use`     | Tìm đơn                  |
-| `/order create`                             | `korder.create`  | Mở tạo đơn               |
-| `/order create <material> <số lượng> <giá>` | `korder.create`  | Tạo đơn bằng Material    |
-| `/order createhand`                         | `korder.create`  | Tạo đơn từ item đang cầm |
-| `/order mine`                               | `korder.use`     | Xem My Orders            |
-| `/order stash`                              | `korder.use`     | Nhận hàng                |
-| `/order deliver <id> <số lượng>`            | `korder.deliver` | Giao hàng                |
-| `/order add <id> <số lượng>`                | `korder.create`  | Thêm số lượng vào đơn    |
+| Lệnh                                         | Quyền            | Chức năng                      |
+| -------------------------------------------- | ---------------- | ------------------------------ |
+| `/korder`                                    | `korder.use`     | Mở chợ                         |
+| `/korder help`                               | —                | Xem trợ giúp theo locale       |
+| `/korder browse [từ khóa]`                   | `korder.use`     | Xem đơn công khai              |
+| `/korder public [từ khóa]`                   | `korder.use`     | Alias của `browse`             |
+| `/korder search <từ khóa>`                   | `korder.use`     | Gợi ý buyer và tìm order       |
+| `/korder create`                             | `korder.create`  | Mở tạo đơn                     |
+| `/korder create <material> <số lượng> <giá>` | `korder.create`  | Tạo đơn bằng Material          |
+| `/korder createhand`                         | `korder.create`  | Tạo đơn từ item đang cầm       |
+| `/korder mine` / `my`                        | `korder.use`     | Xem đơn `ACTIVE`, chưa hết hạn |
+| `/korder stash` / `collect`                  | `korder.use`     | Mở Stash                       |
+| `/korder deliver <id> <số lượng>` / `giao`   | `korder.deliver` | Giao item                      |
+| `/korder add <id> <số lượng>`                | `korder.create`  | Tăng số lượng đơn              |
 
-Alias có sẵn: `public`, `my`, `collect`, `giao`, `increase`, `them`.
+`increase` và `them` là alias của `add`.
 
 ### Quản trị
 
@@ -38,6 +39,8 @@ Alias có sẵn: `public`, `my`, `collect`, `giao`, `increase`, `them`.
 | `/korder admin pending`      | `korder.admin` | Xem transaction cần kiểm tra                  |
 | `/korder admin tx <id>`      | `korder.admin` | Xem một transaction                           |
 | `/korder admin webhook test` | `korder.admin` | Kiểm tra Discord Webhook                      |
+| `/korder admin`              | `korder.admin` | Xem trợ giúp quản trị                         |
+| `/korder admin reload`       | `korder.admin` | Alias của `/korder reload`                    |
 
 ### Permission nodes
 
@@ -63,4 +66,4 @@ korder.limit.100
 korder.limit.200
 ```
 
-Nếu người chơi có nhiều quyền giới hạn, KOrder dùng giá trị cao nhất.
+Nếu người chơi có nhiều quyền giới hạn, KOrder dùng giá trị cao nhất thay cho `orders.default-limit`.

@@ -15,7 +15,9 @@ Buyers select an item, quantity, and unit price. KOrder validates the request be
 
 ### Deliveries
 
-Sellers can deliver part or all of the remaining quantity. The delivery GUI only selects a quantity. Items are removed only after **Confirm** and a transaction recheck.
+Sellers can deliver part or all of the remaining quantity. The delivery GUI is a selection preview.
+
+KOrder removes real items only after **Confirm**. It then rechecks the order and inventory under transaction guards.
 
 ### Order management
 
@@ -27,7 +29,9 @@ Active orders support:
 
 ### Stash
 
-Delivered items remain in the Stash. Items that do not fit remain available for collection.
+Delivered items remain in the persistent Stash. Items that do not fit remain available.
+
+Claims reserve entries as `CLAIMING` before player data is saved. This favors no-dupe recovery after crashes.
 
 ### Interface styles
 
@@ -45,8 +49,19 @@ king.yml
 custom.yml
 ```
 
+`custom.yml` owns its text across locale changes. Keep control slots unique and within `0..53`.
+
+`page-size` is clamped to `9..45`. Stash always displays 45 entries per page.
+
+### Search and input
+
+KOrder prefers native Paper Dialog. Bedrock uses Floodgate/Geyser forms when available.
+
+Unsupported Dialog paths use a virtual Anvil when enabled. R02-v2 never places temporary signs.
+
 ### Integrations
 
 * PlaceholderAPI and Discord Webhook.
-* Vault, VaultUnlocked, and PlayerPoints.
-* CoinsEngine, ExcellentEconomy, Geyser, and Floodgate when available.
+* Vault, VaultUnlocked v2, and PlayerPoints.
+* CoinsEngine and ExcellentEconomy through Vault providers.
+* Geyser and Floodgate when available.

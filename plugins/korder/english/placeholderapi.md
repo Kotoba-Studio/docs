@@ -21,16 +21,16 @@ placeholderapi:
 
 | Placeholder                  | Result                               |
 | ---------------------------- | ------------------------------------ |
-| `%korder_version%`           | KOrder version                       |
+| `%korder_version%`           | `R02-v2`                             |
 | `%korder_author%`            | `V3rhs`                              |
 | `%korder_ready%`             | `true` / `false`                     |
 | `%korder_locale%`            | Current locale                       |
 | `%korder_economy%`           | Economy provider                     |
 | `%korder_economy_mode%`      | Economy mode                         |
 | `%korder_gui%`               | Current GUI style                    |
-| `%korder_active_orders%`     | Player `ACTIVE` order count          |
+| `%korder_active_orders%`     | Active, unexpired order count        |
 | `%korder_has_active_orders%` | Whether the player has active orders |
-| `%korder_stash%`             | Pending Stash entry count            |
+| `%korder_stash%`             | `AVAILABLE` Stash entry count        |
 | `%korder_has_stash%`         | Whether items await collection       |
 
 Available aliases:
@@ -43,4 +43,8 @@ Available aliases:
 %korder_pending_deliveries%
 ```
 
+Player-specific placeholders return `0` or `false` without a player.
+
 Database placeholders use cached, asynchronous refreshes. KOrder does not run synchronous SQLite queries during scoreboard or TAB updates.
+
+The cache is invalidated after relevant order or Stash changes. It clears on reload and disable.

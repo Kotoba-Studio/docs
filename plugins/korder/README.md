@@ -13,7 +13,7 @@ KOrder là plugin **Buy Order Marketplace** cho máy chủ Minecraft Paper-famil
 
 Người chơi tạo đơn mua với tiền được giữ trong escrow. Người khác giao đúng vật phẩm để nhận tiền. Người mua nhận hàng qua Stash.
 
-**Phiên bản:** R01\
+**Phiên bản:** R02-v2\
 **Tác giả:** V3rhs\
 **Studio:** Kotoba Studio / K-Studio\
 **Hỗ trợ:** [Discord](https://discord.gg/x9ScDT7fCV)
@@ -26,6 +26,7 @@ Tiếng Việt là ngôn ngữ mặc định của tài liệu này. Chọn **En
 
 * Giao diện Modern mặc định, cùng các style King và Custom.
 * Escrow, audit log và transaction SQLite giúp giảm rủi ro nhân bản vật phẩm.
+* Stash bền vững, recovery thận trọng và ledger cho economy không chắc chắn.
 * Hỗ trợ PlaceholderAPI, Discord Webhook và Java API tùy chọn.
 
 ### Cài đặt nhanh
@@ -40,7 +41,7 @@ Không thay nóng JAR khi giao dịch đang hoạt động.
 {% step %}
 #### Cài plugin
 
-Đặt `KOrder-R01.jar` vào thư mục `plugins/`.
+Đặt `KOrder-R02-v2.jar` vào thư mục `plugins/`.
 
 Cài một economy provider được hỗ trợ.
 {% endstep %}
@@ -63,4 +64,12 @@ Folia / Canvas: scheduler-aware khi API tương thích
 Plugin bytecode: Java 21
 ```
 
-Phiên bản Java runtime phụ thuộc vào máy chủ đang chạy.
+KOrder không hỗ trợ chính thức Spigot/Bukkit thiếu Paper scheduler API.
+
+KOrder tránh NMS và CraftBukkit. Dialog, Anvil và Bedrock form được chọn theo khả năng runtime.
+
+{% hint style="warning" %}
+JAR phát hành gọn chỉ có SQLite native cho Linux x86\_64 glibc.
+
+Windows, macOS, Linux ARM64 hoặc Linux musl cần tự build sau khi điều chỉnh native filters.
+{% endhint %}

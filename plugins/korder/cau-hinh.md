@@ -28,6 +28,16 @@ gui:
 
 Các style: `modern`, `king`, `custom`.
 
+`custom` tắt text theo locale. Title custom hỗ trợ `{page}`, `{pages}` và `{order}`.
+
+```yaml
+layout:
+  page-size: 45
+
+behavior:
+  direct-deliver: true
+```
+
 ### Economy
 
 ```yaml
@@ -43,6 +53,14 @@ economy:
 | `playerpoints`     | PlayerPoints trực tiếp               |
 | `coinsengine`      | CoinsEngine qua Vault provider       |
 | `excellenteconomy` | ExcellentEconomy qua Vault provider  |
+
+`vault` chấp nhận mọi Vault Economy provider được đăng ký đúng. CoinsEngine và ExcellentEconomy không có custom-currency ID trực tiếp.
+
+PlayerPoints dùng point nguyên. Giá không biểu diễn chính xác sẽ bị từ chối, không làm tròn.
+
+{% hint style="warning" %}
+Không retry mù một deposit hoặc withdraw không chắc chắn. Kiểm tra `/korder admin pending`, `/korder admin tx <id>` và lịch sử economy trước khi bù trừ.
+{% endhint %}
 
 ### Discord Webhook
 
@@ -62,6 +80,8 @@ discord-webhook:
 ```
 
 Kiểm tra webhook bằng `/korder admin webhook test`.
+
+Webhook chạy ngoài transaction. Hàng đợi có giới hạn 256 message. Lỗi webhook không rollback hoặc nhân bản order.
 
 ### Đơn hàng
 
