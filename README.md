@@ -14,7 +14,7 @@ Kotoba Studio phát triển công cụ cho máy chủ Minecraft. Mục tiêu r�
 
 ### Bắt đầu
 
-<table data-view="cards"><thead><tr><th>Điểm đến</th><th data-card-target data-type="content-ref">Liên kết</th></tr></thead><tbody><tr><td><strong>Plugins</strong><br>Khám phá tài liệu, cấu hình và hướng dẫn sử dụng các plugin của Kotoba Studio.</td><td><a href="plugins/korder/">korder</a></td></tr><tr><td><strong>GitHub</strong><br>Theo dõi phiên bản mới, changelog và các bản phát hành chính thức.</td><td><a href="https://github.com/Kotoba-Studio">https://github.com/Kotoba-Studio</a></td></tr><tr><td><strong>Hỗ trợ</strong><br>Tìm hướng dẫn cài đặt, cấu hình và giải quyết các vấn đề thường gặp.</td><td><a href="https://discord.gg/x9ScDT7fCV">https://discord.gg/x9ScDT7fCV</a></td></tr></tbody></table>
+<table data-view="cards"><thead><tr><th>Điểm đến</th><th data-card-target data-type="content-ref">Liên kết</th></tr></thead><tbody><tr><td><strong>Plugins</strong><br>Khám phá tài liệu, cấu hình và hướng dẫn sử dụng các plugin của Kotoba Studio.</td><td><a href="plugins/korders/">korders</a></td></tr><tr><td><strong>GitHub</strong><br>Theo dõi phiên bản mới, changelog và các bản phát hành chính thức.</td><td><a href="https://github.com/Kotoba-Studio">https://github.com/Kotoba-Studio</a></td></tr><tr><td><strong>Hỗ trợ</strong><br>Tìm hướng dẫn cài đặt, cấu hình và giải quyết các vấn đề thường gặp.</td><td><a href="https://discord.gg/x9ScDT7fCV">https://discord.gg/x9ScDT7fCV</a></td></tr></tbody></table>
 
 ***
 

@@ -10,7 +10,7 @@ icon: terminal
 | Lệnh                                   | Quyền                |
 | -------------------------------------- | -------------------- |
 | `/shop [category]`                     | `kshop.open`         |
-| `/ranks`                               | `kshop.ranks.open`   |
+| `/ranks` hoặc `/rankshop`              | `kshop.ranks.open`   |
 | `/kshop status`                        | `kshop.admin.status` |
 | `/kshop reload`                        | `kshop.admin.reload` |
 | `/kshop style <style>`                 | `kshop.admin.style`  |
@@ -20,4 +20,6 @@ icon: terminal
 | `/kshop eco <shop> <item> <eco>`       | `kshop.admin.edit`   |
 | `/kshop market reset [item\|all]`      | `kshop.admin.market` |
 
-Quyền quản trị tổng: `kshop.admin`.
+`<eco>` nhận `vault`, `shards`, `points` hoặc `free`.
+
+Quyền `kshop.admin` kế thừa toàn bộ quyền quản trị trong bảng.

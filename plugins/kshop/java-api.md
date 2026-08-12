@@ -7,10 +7,18 @@ icon: brackets-curly
 
 ## KShop API
 
-Khai báo KShop là dependency tùy chọn:
+Khai báo JAR KShop khi biên dịch:
 
-```yaml
-softdepend: [KShop]
+```gradle
+dependencies {
+    compileOnly files('libs/KShop-R02-v6.jar')
+}
+```
+
+Khai báo dependency cho plugin tích hợp:
+
+```yml
+depend: [KShop]
 ```
 
 ### Mở GUI
@@ -20,10 +28,14 @@ import vn.kotobastudio.kshopr01.KShopR01;
 
 KShopR01 shop = KShopR01.instance();
 shop.openShop(player);
-shop.openShop(player, "shards");
+shop.openShop(player, "blocks");
 shop.openRanks(player);
 ```
 
+Package vẫn là `vn.kotobastudio.kshopr01` để giữ compatibility với integration cũ.
+
+API public gồm `instance()`, `openShop(Player)`, `openShop(Player, String)` và `openRanks(Player)`.
+
 {% hint style="warning" %}
-Khi dùng `softdepend`, luôn kiểm tra KShop đã được bật trước khi gọi API.
+Config, transaction, market và economy nội bộ không phải stable API. Không bind trực tiếp plugin khác vào chúng.
 {% endhint %}

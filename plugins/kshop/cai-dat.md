@@ -20,7 +20,7 @@ icon: download
 {% step %}
 #### Cài JAR
 
-Đặt JAR KShop vào thư mục `plugins/`.
+Tắt hoàn toàn máy chủ. Đặt `KShop-R02-v6.jar` vào `plugins/`.
 {% endstep %}
 
 {% step %}
@@ -30,14 +30,18 @@ Khởi động máy chủ để tạo thư mục `plugins/KShop/`.
 {% endstep %}
 
 {% step %}
-#### Chọn cấu hình
+#### Kiểm tra
 
-Chọn style và economy trong `config.yml`. Sau đó chạy:
+Chạy lệnh sau, rồi mở `/shop` để kiểm tra GUI:
 
 ```
-/kshop reload
+/kshop status
 ```
 {% endstep %}
 {% endstepper %}
 
-KShop tự nhận Vault-compatible provider, KEssentials, Essentials, SunLight, CMI, XConomy, PlayerPoints và KShards khi plugin tương ứng đã được cài.
+{% hint style="warning" %}
+Không xóa `plugins/KShop/` khi nâng cấp. Hãy backup thư mục này trước khi thay JAR.
+{% endhint %}
+
+KShop tự nhận Vault-compatible provider, KEssentials, Essentials, SunLight, CMI, XConomy, TheNewEconomy, CoinsEngine, PlayerPoints và KShards.
