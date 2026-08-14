@@ -20,6 +20,24 @@ icon: terminal
 | `/kshop eco <shop> <item> <eco>`       | `kshop.admin.edit`   |
 | `/kshop market reset [item\|all]`      | `kshop.admin.market` |
 
-`<eco>` nhận `vault`, `shards`, `points` hoặc `free`.
+`<eco>` nhận `vault`, `shards`, `kshards`, `points`, `playerpoints` hoặc `free`.
 
-Quyền `kshop.admin` kế thừa toàn bộ quyền quản trị trong bảng.
+### Mặc định
+
+`kshop.open` và `kshop.ranks.open` mặc định là `true`.
+
+`kshop.admin` và toàn bộ quyền quản trị mặc định dành cho OP. `kshop.admin` kế thừa mọi quyền quản trị trong bảng.
+
+### Product permission
+
+Sản phẩm có thể yêu cầu permission riêng:
+
+```yaml
+permission: kshop.vip
+```
+
+Người chơi thiếu quyền này không thể mua sản phẩm.
+
+{% hint style="warning" %}
+Không cấp `kshop.admin` cho người chơi thường. Quyền này có thể đổi giá, currency và reset Market Economy.
+{% endhint %}

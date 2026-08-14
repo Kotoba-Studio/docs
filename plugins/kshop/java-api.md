@@ -1,41 +1,22 @@
 ---
-description: Mở Shop GUI từ plugin Java khác.
+description: Phạm vi tích hợp Java được công bố cho KShop R03.
 icon: brackets-curly
 ---
 
 # Java API
 
-## KShop API
+## Tích hợp Java
 
-Khai báo JAR KShop khi biên dịch:
+KShop R03 documentation package không công bố Java API ổn định.
 
-```gradle
-dependencies {
-    compileOnly files('libs/KShop-R02-v6.jar')
-}
-```
+Không dùng package, class hoặc dependency từ tài liệu R02 như một API contract cho R03.
 
-Khai báo dependency cho plugin tích hợp:
+### Tích hợp an toàn
 
-```yml
-depend: [KShop]
-```
+Khai báo KShop là dependency khi plugin của bạn cần plugin này hoạt động trước.
 
-### Mở GUI
-
-```java
-import vn.kotobastudio.kshopr01.KShopR01;
-
-KShopR01 shop = KShopR01.instance();
-shop.openShop(player);
-shop.openShop(player, "blocks");
-shop.openRanks(player);
-```
-
-Package vẫn là `vn.kotobastudio.kshopr01` để giữ compatibility với integration cũ.
-
-API public gồm `instance()`, `openShop(Player)`, `openShop(Player, String)` và `openRanks(Player)`.
+Tích hợp qua command hoặc cấu hình khi phù hợp. Kiểm tra release notes trước khi gọi API nội bộ.
 
 {% hint style="warning" %}
-Config, transaction, market và economy nội bộ không phải stable API. Không bind trực tiếp plugin khác vào chúng.
+Không bind vào config, transaction, market hoặc economy nội bộ. Các thành phần này không phải stable API.
 {% endhint %}

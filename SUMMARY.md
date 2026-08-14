@@ -36,6 +36,7 @@
   * [Cấu hình](plugins/kshop/cau-hinh.md)
   * [Java API](plugins/kshop/java-api.md)
   * [Vận hành](plugins/kshop/van-hanh.md)
+  * [Nâng cấp lên R03](plugins/kshop/nang-cap-len-r03.md)
 * [KShield](plugins/kshield/README.md)
   * [Cài đặt](plugins/kshield/cai-dat.md)
   * [Lệnh và quyền hạn](plugins/kshield/lenh-va-quyen-han.md)

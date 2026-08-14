@@ -9,18 +9,19 @@ icon: download
 
 ### Yêu cầu
 
-* Java 21.
-* Minecraft 1.21.x.
+* Máy chủ tương thích API Bukkit 1.21.
 * Paper, Folia hoặc Canvas.
-* Ít nhất một economy provider phù hợp.
+* Economy provider chỉ cần cho sản phẩm trả phí.
 
 ### Cài đặt
 
 {% stepper %}
 {% step %}
-#### Cài JAR
+#### Sao lưu và cài JAR
 
-Tắt hoàn toàn máy chủ. Đặt `KShop-R02-v6.jar` vào `plugins/`.
+Tắt hoàn toàn máy chủ. Sao lưu toàn bộ `plugins/KShop/`.
+
+Đặt JAR KShop R03 vào `plugins/`. Xóa hoặc đổi tên JAR KShop cũ.
 {% endstep %}
 
 {% step %}
@@ -41,7 +42,17 @@ Chạy lệnh sau, rồi mở `/shop` để kiểm tra GUI:
 {% endstepper %}
 
 {% hint style="warning" %}
-Không xóa `plugins/KShop/` khi nâng cấp. Hãy backup thư mục này trước khi thay JAR.
+Không chạy hai JAR KShop cùng lúc. Không dùng `/reload` thay cho restart khi thay JAR.
 {% endhint %}
 
-KShop tự nhận Vault-compatible provider, KEssentials, Essentials, SunLight, CMI, XConomy, TheNewEconomy, CoinsEngine, PlayerPoints và KShards.
+### Thiết lập economy
+
+Dùng `eco: vault` cho economy tương thích Vault. Dùng `eco: shards` cho KShards.
+
+Dùng `eco: points` cho PlayerPoints. Sản phẩm miễn phí phải dùng `eco: free`.
+
+### Kiểm tra đầu tiên
+
+Chạy `/kshop status`. Kiểm tra style, số sản phẩm, money provider và transaction queue.
+
+Sau đó mở `/shop`. Thử mua với số dư bằng `0`, thiếu tiền và đúng bằng giá.
