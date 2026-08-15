@@ -9,10 +9,9 @@ icon: download
 
 ### Yêu cầu
 
-* Java 21.
-* Minecraft 1.21.x.
-* Paper, Folia hoặc Canvas.
-* WorldGuard chỉ bắt buộc khi dùng thưởng region.
+* Java phù hợp server Minecraft 1.21.x.
+* Paper hoặc Folia tương thích.
+* WorldEdit và WorldGuard chỉ cần cho vùng `WORLDGUARD`.
 
 ### Cài đặt
 
@@ -20,7 +19,7 @@ icon: download
 {% step %}
 #### Cài JAR
 
-Đặt JAR KShards vào thư mục `plugins/`.
+Đặt `KShards-R03.jar` vào thư mục `plugins/`.
 {% endstep %}
 
 {% step %}
@@ -30,14 +29,22 @@ Khởi động máy chủ để tạo thư mục `plugins/KShards/`.
 {% endstep %}
 
 {% step %}
-#### Chọn database
+#### Chọn storage
 
-Chọn loại database trong `config.yml`. Chạy lệnh sau sau khi chỉnh cấu hình:
+Chọn `SQLITE`, `MYSQL` hoặc `MARIADB` trong `config.yml`. Xác nhận kết nối:
 
 ```
-/shards reload
+/shards status
 ```
 {% endstep %}
 {% endstepper %}
 
 SQLite phù hợp máy chủ đơn. MySQL hoặc MariaDB phù hợp mạng nhiều máy chủ.
+
+### Cấu hình và an toàn
+
+`config.yml` chứa currency, storage, cache, pay, history, event và security. `events.yml` là state runtime. Không sửa `events.yml` hoặc database khi server đang chạy.
+
+`/shards reload` áp dụng config runtime. Đổi storage, executor hoặc cache phải restart. Không đổi `storage.type` để mong plugin tự chuyển dữ liệu.
+
+Giữ console và file audit bật. Với MySQL, dùng user và database riêng. Không công khai password.

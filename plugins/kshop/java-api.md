@@ -1,5 +1,5 @@
 ---
-description: Phạm vi tích hợp Java được công bố cho KShop R03.
+description: Phạm vi tích hợp Java được công bố cho KShop R04 HotFix.
 icon: brackets-curly
 ---
 
@@ -7,9 +7,9 @@ icon: brackets-curly
 
 ## Tích hợp Java
 
-KShop R03 documentation package không công bố Java API ổn định.
+KShop R04 HotFix không công bố Java API ổn định.
 
-Không dùng package, class hoặc dependency từ tài liệu R02 như một API contract cho R03.
+Không dùng package, class hoặc dependency nội bộ như một API contract.
 
 ### Tích hợp an toàn
 

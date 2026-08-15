@@ -5,19 +5,41 @@ icon: wrench
 
 # Vận hành
 
-## Vận hành
+## Vận hành KShop R04 – HotFix
 
 ### Giao dịch
 
-KShop xử lý giao dịch theo queue riêng của mỗi người chơi.
+KShop xử lý giao dịch theo queue riêng của từng người chơi.
 
-`purchase.queue-capacity` giới hạn job đang chờ. Thiết lập này giảm spam click và giao dịch trùng.
+`purchase.queue-capacity` giới hạn click đang chờ. Giá trị mặc định là `16`.
 
-`purchase.quote-expire-seconds` xác định thời gian quote còn hiệu lực. KShop tính lại giá khi quote hết hạn.
+`purchase.quote-expire-seconds` xác định thời hạn quote. Giá mặc định hết hạn sau `15` giây.
 
-Item product được kiểm tra inventory trước khi trao thưởng. Command product chạy reward command sau bước thanh toán.
+KShop tạo transaction ID và ghi journal. Idempotency chặn callback commit hai lần.
 
-Nếu reward thất bại sau khi thanh toán, KShop xử lý refund trên transaction path được hỗ trợ.
+Plugin kiểm tra provider, giá, balance và reward trước commit. Journal trạng thái mơ hồ được giữ lại.
+
+{% hint style="warning" %}
+Không xóa journal để ép giao dịch tiếp tục. Đối chiếu audit và economy log trước.
+{% endhint %}
+
+### Price Guard
+
+Price Guard ngăn vòng lặp mua, craft rồi bán qua KWorth.
+
+```yaml
+price:
+  guard:
+    enabled: true
+    fail-closed: true
+    margin-percent: 5.0
+    crafting:
+      enabled: true
+```
+
+Thêm crafting floor cho material cần bảo vệ. Kiểm tra giá với multiplier bán cao nhất.
+
+Khi KWorth không đọc được giá, `fail-closed` chặn giao dịch. Không tắt cơ chế này trên production.
 
 ### Dynamic Market
 
@@ -47,17 +69,15 @@ State nằm tại `plugins/KShop/data/market.properties`. Không sửa file th�
 
 Webhook Market dùng `webhooks.yml`. Không công khai webhook URL.
 
-### Khắc phục sự cố
-
 ### Currency không khả dụng
 
-Kiểm tra `eco:` trên chính item.
+Kiểm tra `eco:` trên chính product.
 
 ```yml
 eco: vault
 ```
 
-`points` cần PlayerPoints. `shards` cần KShards. `vault` cần economy provider phù hợp.
+`points` cần PlayerPoints. `shards` cần KShards. `vault` cần Vault và economy hoạt động.
 
 ### `/shop` không phản hồi hoặc category trống
 
@@ -73,9 +93,9 @@ Kiểm tra material, price, command, YAML indentation, slot và product ID.
 
 ### Menu không có tiếng
 
-Kiểm tra `enabled: true` trong `sounds.yml`. R02-v6 mặc định dùng `minecraft:ui.button.click`.
+Kiểm tra `enabled: true` trong `sounds.yml`.
 
-`confirm.name` có thể để trống. KShop sẽ phát sound kết quả cuối cùng.
+Khi tắt success chat, success sound vẫn có thể phát.
 
 ### Rank không được cấp
 
@@ -95,6 +115,8 @@ KShop dùng fallback language khi cần.
 
 Restart hoàn toàn máy chủ. Không dùng `/reload` của Bukkit.
 
+Giữ thư mục dữ liệu và chỉ thay JAR. Không để nhiều JAR KShop cùng tồn tại.
+
 ### Layout bị lỗi
 
 Kiểm tra slot theo size inventory. Menu 27 slot chỉ dùng `0` đến `26`.
@@ -106,6 +128,8 @@ Kiểm tra `product-slots`, `category-slots`, navigation và selector không đ�
 Kiểm tra `eco: vault` trên sản phẩm. Xác nhận `/kshop status` nhận đúng money provider.
 
 So sánh số dư với economy plugin. Kiểm tra currency không phải `shards` hoặc `points`.
+
+Thiếu tiền luôn báo riêng người mua. Tin báo gồm số cần, số đang có và số thiếu.
 
 ### Bundle chẩn đoán
 

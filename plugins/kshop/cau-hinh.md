@@ -5,7 +5,7 @@ icon: gear
 
 # Cấu hình
 
-## Cấu hình KShop R03
+## Cấu hình KShop R04 – HotFix
 
 ### Config chính
 
@@ -43,6 +43,7 @@ price:
   decimals: 2
   guard:
     enabled: true
+    fail-closed: true
     margin-percent: 5.0
     crafting:
       enabled: true
@@ -213,7 +214,9 @@ Language có `vi_VN` và `en_US`. Giữ nguyên key và placeholder khi dịch.
 
 ### Giá, tax và market
 
-`price.decimals` điều khiển định dạng giá. `price.guard` là lớp kiểm tra chống định giá thấp tùy chọn.
+`price.decimals` điều khiển định dạng giá. Price Guard kiểm tra giá KWorth và craft floor.
+
+Giữ `price.guard.fail-closed: true` khi KWorth đang bật. KShop sẽ chặn giá không kiểm tra được.
 
 Tax tính trên subtotal. Market chỉ hoạt động khi `market-economy.enabled: true` và sản phẩm có `market: true`.
 

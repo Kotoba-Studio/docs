@@ -18,17 +18,18 @@ SellTool giúp người chơi bán vật phẩm nhanh.
 Ví dụ:
 
 ```
-/selltool give EmaVietNam axe 100
+/selltool give EmaVietNam sell-stick 100
 ```
 
 ### Tool mặc định
 
-* `stick` — Sell Stick.
-* `axe` — Netherite Axe có enchant.
-* `wand` — Sell Wand.
+* `sell-stick` — bán toàn bộ item hợp lệ trong container.
+* `farming-wand`, `mining-wand`, `mob-drop-wand`, `fishing-wand` — bán theo category.
+* `sell-bag` — bán inventory người chơi. `value-scanner` chỉ xem giá trị.
+* `area-wand` tắt mặc định. Tool chỉ quét chunk đã load.
 
-Bạn có thể chỉnh material, tên, lore, enchant và số lượt dùng trong `selltool.yml`.
+`selltool.yml` đặt action, material, uses, cooldown, permission, name, lore và whitelist category. Không phát tool bằng `/give` vanilla.
 
 {% hint style="info" %}
-SellTool dùng signature, nonce và generation để hạn chế sao chép hoặc dupe tool.
+Không đổi ID tool đã phát rộng rãi khi chưa có migration. Test quyền claim và WorldGuard trước production.
 {% endhint %}

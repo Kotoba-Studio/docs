@@ -1,23 +1,24 @@
 ---
-description: Sell/Worth cho máy chủ Minecraft với Sell GUI, SellTool và hệ thống giá.
+description: Sell/Worth R02-v5 với GUI, SellTool, market và crash recovery.
 icon: coins
 ---
 
 # KWorth
 
-## KWorth
+## KWorth R02-v5
 
 <a href="https://github.com/Kotoba-Studio/KWorth/releases/" class="button primary" data-icon="download">Tải bản phát hành</a>
 
-KWorth là plugin **Sell/Worth** cho máy chủ Minecraft. Plugin tập trung vào Sell GUI, SellTool, hệ thống giá và khả năng tùy chỉnh.
+KWorth là plugin Sell/Worth có Sell GUI, SellTool, giá động và recovery an toàn.
 
 ### Điểm nổi bật
 
 * `/sell` GUI với nhiều style và tùy chọn xác nhận bán.
-* SellTool với Stick, Axe và Wand.
-* Giá theo `prices.yml`, King progression và Market Price tùy chọn.
-* Hỗ trợ Vault, VaultUnlocked, CoinsEngine, ExcellentCoins, KShards và PlaceholderAPI.
-* Discord Webhook, màu Hex/RGB, cùng transaction guard chống dupe.
+* SellTool theo container, inventory, bộ lọc và scanner.
+* Giá `prices.yml`, progression cá nhân và market tùy chọn.
+* Vault, VaultUnlocked, ExcellentEconomy, CoinsEngine và KShards.
+* Journal fail-closed chống hoàn item khi trạng thái giao dịch chưa rõ.
+* PlaceholderAPI, webhook và virtual price lore tùy chọn.
 
 ### Cài đặt nhanh
 
@@ -25,27 +26,31 @@ KWorth là plugin **Sell/Worth** cho máy chủ Minecraft. Plugin tập trung v�
 {% step %}
 #### Cài plugin
 
-Đặt `KWorth-R01-v3.jar` vào thư mục `plugins/`.
+Tắt máy chủ, rồi đặt `KWorth-R02-v5.jar` vào `plugins/`.
 {% endstep %}
 
 {% step %}
 #### Khởi động máy chủ
 
-Khởi động máy chủ để KWorth tạo thư mục `plugins/KWorth/`.
+Khởi động để KWorth tạo `plugins/KWorth/`.
 {% endstep %}
 
 {% step %}
 #### Cấu hình
 
-Chỉnh các tệp cần thiết. Chạy `/kworth reload` sau khi thay đổi.
+Chọn provider và cấu hình giá. Chạy `/kworth status` để xác nhận tích hợp.
 {% endstep %}
 {% endstepper %}
 
+{% hint style="warning" %}
+Không xóa `data/transaction-journal.yml` khi chưa đối chiếu transaction và economy log.
+{% endhint %}
+
 ### Khả năng tương thích
 
-* Java 21 trở lên.
-* Minecraft 1.21.1 trở lên.
-* Paper, Folia hoặc Canvas.
+* Java phù hợp phiên bản server Minecraft 1.21.x.
+* Paper hoặc Folia tương thích.
+* PacketEvents chỉ cần khi bật virtual item price lore.
 
 ### Liên kết
 

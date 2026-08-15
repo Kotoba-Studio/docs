@@ -18,6 +18,8 @@ icon: terminal
 | `/shards history [page]`        | `kshards.history` |
 | `/shardshop`                    | `kshards.shop`    |
 
+`/shards shop` và `/shopshards` cũng mở KShop. Amount nhận `10000`, `10k`, `1.5m` và `2b`.
+
 ### Quản trị
 
 | Lệnh                             | Quyền                   |
@@ -31,4 +33,15 @@ icon: terminal
 | `/shards reload`                 | `kshards.admin.reload`  |
 | `/shards status`                 | `kshards.admin.status`  |
 
-Quyền quản trị tổng: `kshards.admin`.
+Thêm reason tùy chọn cho `give`, `take`, `set`, `reset`, `freeze` và `unfreeze`. `/shards history <player> [page]` cần `kshards.admin.history`.
+
+### Event và region
+
+* `/shards event x2 4m 4d 4h`, `/shards event status`, `/shards event stop` — `kshards.admin.event`.
+* `/kshardsregion set|enable|disable|remove|list|reload` — `kshards.admin.region`.
+
+Event chấp nhận thời lượng ghép. `4m` là bốn phút. State dùng epoch và giữ chính xác qua restart.
+
+`kshards.admin` là parent quản trị. Bypass gồm `kshards.admin.self`, `kshards.admin.high-value`, `kshards.admin.bypass-command-limits`, `kshards.admin.bypass-frozen` và `kshards.admin.bypass-limits`.
+
+Không cấp bypass cho staff không xử lý economy. Giữ `allow-self-modification: false` trừ khi cần thiết.

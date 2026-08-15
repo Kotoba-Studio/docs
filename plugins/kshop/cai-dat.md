@@ -9,8 +9,7 @@ icon: download
 
 ### Yêu cầu
 
-* Máy chủ tương thích API Bukkit 1.21.
-* Paper, Folia hoặc Canvas.
+* Paper hoặc Folia tương thích API 1.21.x.
 * Economy provider chỉ cần cho sản phẩm trả phí.
 
 ### Cài đặt
@@ -21,7 +20,7 @@ icon: download
 
 Tắt hoàn toàn máy chủ. Sao lưu toàn bộ `plugins/KShop/`.
 
-Đặt JAR KShop R03 vào `plugins/`. Xóa hoặc đổi tên JAR KShop cũ.
+Đặt `KShop-R04.jar` vào `plugins/`. Xóa JAR KShop cũ.
 {% endstep %}
 
 {% step %}
@@ -47,7 +46,7 @@ Không chạy hai JAR KShop cùng lúc. Không dùng `/reload` thay cho restart 
 
 ### Thiết lập economy
 
-Dùng `eco: vault` cho economy tương thích Vault. Dùng `eco: shards` cho KShards.
+Dùng `eco: vault` cho Vault và economy provider hoạt động. Dùng `eco: shards` cho KShards.
 
 Dùng `eco: points` cho PlayerPoints. Sản phẩm miễn phí phải dùng `eco: free`.
 

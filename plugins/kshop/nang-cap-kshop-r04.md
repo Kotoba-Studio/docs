@@ -2,9 +2,9 @@
 icon: arrow-up
 ---
 
-# Nâng cấp lên R03
+# Nâng cấp KShop R04
 
-## Nâng cấp lên R03
+## Nâng cấp KShop R04 – HotFix
 
 ### Trước khi nâng cấp
 
@@ -13,20 +13,20 @@ Sao lưu toàn bộ `plugins/KShop/`. Nếu dùng Git, commit cấu hình trư�
 ### Thay JAR
 
 1. Tắt máy chủ.
-2. Thay JAR cũ bằng KShop R03.
+2. Thay JAR cũ bằng `KShop-R04.jar`.
 3. Không chạy hai JAR KShop.
 4. Khởi động và đọc console.
 
-KShop có migration nội bộ cho cấu hình cũ. Chờ plugin khởi động xong trước khi sửa file.
+Giữ nguyên thư mục dữ liệu. Chờ plugin khởi động xong trước khi sửa file.
 
-### Checklist R02 → R03
+### Checklist sau nâng cấp
 
 * Dùng `name: ''` cho item thường cần tên Minecraft mặc định.
 * Kiểm tra lại giao dịch Vault thiếu tiền.
 * Giữ `amount` trong phạm vi `1` đến `2304`.
 * Giữ `large-buy: true` cho sản phẩm cần chọn số lượng.
 
-Không chép đè toàn bộ file R03 bằng file cũ. So sánh schema rồi chỉ merge phần tùy chỉnh.
+Không chép đè toàn bộ file mặc định lên file cũ. So sánh schema rồi chỉ merge phần tùy chỉnh.
 
 Nên giữ category tùy chỉnh, style tùy chỉnh, translations, rank definitions và rank commands.
 
@@ -40,4 +40,4 @@ Nên giữ category tùy chỉnh, style tùy chỉnh, translations, rank definit
 
 ### Rollback
 
-Tắt máy chủ, khôi phục JAR và cấu hình đã sao lưu, rồi khởi động lại. Không xóa backup trước khi bản mới qua kiểm thử production.
+Tắt máy chủ và khôi phục đồng bộ JAR, config, database và journal đã sao lưu. Không xóa backup trước khi bản mới qua kiểm thử production.
