@@ -4,7 +4,7 @@
 
 ## Plugins
 
-* [KOrders](plugins/korders/README.md)
+* [KOrder](plugins/korders/README.md)
   * [Chức năng](plugins/korders/chuc-nang.md)
   * [Lệnh và quyền hạn](plugins/korders/lenh-va-quyen-han.md)
   * [Cấu hình](plugins/korders/cau-hinh.md)
