@@ -1,6 +1,6 @@
 # Table of contents
 
-* [Kotoba Studio](README.md)
+* [KShop R05](README.md)
 
 ## Plugins
 
@@ -30,13 +30,12 @@
   * [Lệnh và quyền hạn](plugins/kshards/lenh-va-quyen-han.md)
   * [AFK region và event](plugins/kshards/afk-region-va-event.md)
   * [Java API](plugins/kshards/java-api.md)
-* [KShop](plugins/kshop/README.md)
+* [KShop R05](plugins/kshop/README.md)
   * [Cài đặt](plugins/kshop/cai-dat.md)
   * [Lệnh và quyền hạn](plugins/kshop/lenh-va-quyen-han.md)
   * [Cấu hình](plugins/kshop/cau-hinh.md)
   * [Java API](plugins/kshop/java-api.md)
   * [Vận hành](plugins/kshop/van-hanh.md)
-  * [Nâng cấp KShop R04](plugins/kshop/nang-cap-kshop-r04.md)
 * [KShield](plugins/kshield/README.md)
   * [Cài đặt](plugins/kshield/cai-dat.md)
   * [Lệnh và quyền hạn](plugins/kshield/lenh-va-quyen-han.md)

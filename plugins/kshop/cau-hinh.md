@@ -1,17 +1,36 @@
 ---
-description: Shop style, economy, item và các tùy chọn giao dịch.
+description: Cấu hình KShop R05 CleanMenu, products, economy, GUI và Rank Shop.
 icon: gear
 ---
 
 # Cấu hình
 
-## Cấu hình KShop R04 – HotFix
+## Cấu hình KShop R05 — CleanMenu
+
+> R05 không dùng `styles/one/` hoặc `styles/king/` cho Shop chính.\
+> One và King là **Setup Pack ZIP** chứa `shops.yml` và `shops/`.
+
+### Cấu trúc R05
+
+```
+plugins/KShop/
+├── config.yml
+├── shops.yml
+├── shops/*.yml
+├── lang.yml
+├── sounds.yml
+├── webhooks.yml
+└── ranks/
+    ├── settings.yml
+    └── styles/
+```
+
+KShop R05 tự quét `shops/*.yml`. Tên `shops/ores.yml` tạo category ID `ores`.
 
 ### Config chính
 
 ```yaml
-config-version: 15
-style: one
+config-version: 19
 
 lang: vi_VN
 
@@ -22,6 +41,10 @@ purchase:
   keep-menu-open: true
   quote-expire-seconds: 15
   queue-capacity: 16
+  success-message:
+    enabled: false
+  insufficient-funds-details:
+    enabled: false
 
 rank-shop:
   enabled: false
@@ -50,81 +73,63 @@ price:
       floors: {}
 ```
 
-### Giao diện và ngôn ngữ
+`quote-expire-seconds` làm mới quote cũ. `queue-capacity` giảm double purchase. `fail-closed: true` phù hợp production.
 
-Style shop: `one`, `king`, `ecosword`, `chillsmp`, `custom`, `modern`, `minimal`, `midnight`, `pastel`, `emerald`.
-
-Đặt `lang: vi_VN` hoặc `lang: en_US`. Sau đó chạy `/kshop reload`.
-
-R03 có fallback `vi_VN` và `en_US`.
-
-Dùng token language trong title và lore:
-
-```
-{lang:ui.product.price}
-{lang:ui.selector.confirm}
-{lang:rank.title}
-```
-
-### Sản phẩm item
+### Layout `shops.yml`
 
 ```yaml
-items:
-  stone:
-    type: item
-    page: 1
-    slot: 9
-    eco: vault
-    price: 5
-    amount: 1
-    material: STONE
-    name: ''
-    lore: ['', '{lang:ui.product.price}']
+root:
+  title: '&8ᴇᴄᴏɴᴏᴍʏ sᴛᴏʀᴇ'
+  size: 27
+  category-slots: [10, 11, 12, 13, 14, 15, 16]
+category:
+  title: '&8{category}'
+  size: 27
+  product-slots: [9, 10, 11, 12, 13, 14, 15, 16, 17]
+  layouts:
+    gear: [2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+  navigation:
+    previous: { slot: 18, material: ARROW }
+    back: { slot: 22, material: RED_STAINED_GLASS_PANE }
+    next: { slot: 26, material: ARROW }
+selector:
+  title: '&8ᴍᴜᴀ {product}'
+  size: 27
+  product-slot: 13
+  amount-slots: [9, 10, 11, 15, 16, 17]
+  back: { slot: 21 }
+  confirm: { slot: 23 }
 ```
 
-`price` là giá của một bundle. `amount` là số item trong bundle.
+Inventory hợp lệ: `9`, `18`, `27`, `36`, `45`, `54`. Slot bắt đầu từ `0`. Navigation slots không dùng làm product slots.
 
-`eco` được chọn trên từng item. Giá trị hỗ trợ: `vault`, `points`, `shards`, `free`.
+### Category, pages và product
 
-`playerpoints` là alias của `points`. `kshards` là alias của `shards`.
-
-PlayerPoints và KShards dùng số nguyên. Một shop có thể trộn nhiều currency.
-
-Đặt `name: ''` để giữ tên item Minecraft theo ngôn ngữ client.
-
-#### Category và product
-
-Mỗi style có file root `styles/<style>/shops.yml` và category tại:
-
-```
-styles/<style>/shops/<category>.yml
-```
+Tạo `plugins/KShop/shops/ores.yml`:
 
 ```yaml
-title: '&aFood'
+enabled: true
+title: '&bᴏʀᴇs'
 size: 27
-icon: GLOW_BERRIES
-menu-slot: 11
-items:
-  bread:
-    type: item
-    eco: vault
-    large-buy: true
-    material: BREAD
-    page: 1
-    slot: 9
-    price: 48
-    amount: 1
-    name: ''
-    permission: ''
-    market: false
+icon: DIAMOND_ORE
+menu-slot: 17
+pages:
+  1:
+    items:
+      diamond:
+        eco: vault
+        slot: 12
+        material: DIAMOND
+        price: 500
+        amount: 1
+        large-buy: true
+        market: true
+        permission: ''
 ```
 
-`menu-slot: -1` không đặt vị trí cố định. Slot inventory bắt đầu từ `0`.
+Không đặt `page:` trong product. KShop tự phân trang khi số item vượt `product-slots`. `slot` là vị trí ưu tiên. Không khai `slot` thì KShop tự xếp. `slots: 12` và `slots: [12]` vẫn tương thích.
 
-`permission: kshop.vip` giới hạn quyền mua product. `market: true` đưa product vào Dynamic Market.
-
-#### Command product
+`eco` hỗ trợ `vault`, `shards` (`kshards`), `points` (`playerpoints`) và `free`. Dùng `eco: free` cùng `price: 0`. Paid product cần `price > 0`.
 
 ```yaml
 zombie_spawner:
@@ -133,110 +138,58 @@ zombie_spawner:
   price: 15000
   amount: 1
   large-buy: false
-  page: 1
-  slot: 9
+  market: false
   display:
     material: SPAWNER
-    name: '&aZombie Spawner'
+    name: '&dZombie Spawner'
   commands:
     - 'smartspawner give {player} zombie {amount}'
 ```
 
-`display` chỉ là icon GUI. Command là phần thưởng thực tế.
+Command product dùng `command` hoặc `commands`. Placeholder: `{player}`, `{amount}`. Material phải hợp lệ và không dùng `AIR`.
 
-Dùng `command:` cho một lệnh hoặc `commands:` cho nhiều lệnh. Placeholder gồm `{player}`, `{amount}` và `{product}`.
+### One, King, Rank Shop và integrations
 
-#### Quy tắc YAML
+One có layout Gear 14 slots. King có 9 slots mỗi page. Cài bằng `KShop-R05-Setup-One-CleanMenu.zip` hoặc `KShop-R05-Setup-King-CleanMenu.zip`.
 
-* Dùng spaces, không dùng tab.
-* Material phải hợp lệ.
-* Không trùng product ID trong một category.
-* Sản phẩm trả phí cần giá dương.
-* Slot phải thuộc inventory đã chọn.
-
-### Command product
+> Setup ZIP là full setup. Backup `shops.yml` và `shops/` trước khi ghi đè. Restart là cách an toàn nhất.
 
 ```yaml
-items:
-  zombie_spawner:
-    type: command
-    slot: 10
-    eco: shards
-    price: 15000
-    display:
-      material: SPAWNER
-      name: 'Zombie Spawner'
-    commands:
-      - 'smartspawner give {player} zombie {amount}'
-```
-
-Các placeholder command gồm `{player}`, `{amount}` và `{product}`.
-
-### Rank Shop
-
-Bật Rank Shop và chọn style:
-
-```yml
 rank-shop:
   enabled: true
   style: flags
 ```
 
-Style rank: `flags`, `iris`, `minimal`, `midnight`.
-
-Chỉnh provider tại `plugins/KShop/ranks/settings.yml`:
-
-```yml
-provider: auto # auto | luckperms | powerranks | custom
-
-custom:
-  set-command: ''
-  add-command: ''
-```
-
-`auto` ưu tiên provider tương thích. Rank item dùng `kshoprank set {player} <rank>` hoặc `kshoprank add {player} <rank>`.
-
-Rank Shop mở bằng `/ranks` hoặc `/rankshop`. Quyền cần thiết là `kshop.ranks.open`.
-
-Hãy kiểm tra currency, provider, rank upgrade và trường hợp thiếu tiền trước khi mở cho người chơi.
-
-### Style, ngôn ngữ và âm thanh
-
-Style shop có sẵn: `one`, `king`, `ecosword`, `chillsmp`, `custom`, `modern`, `minimal`, `midnight`, `pastel`, `emerald`.
-
-Đổi style bằng `/kshop style modern`. Root layout dùng các key `root.title`, `root.size`, `root.categories` và `root.category-slots`.
-
-Slot Bukkit bắt đầu từ `0`. Inventory 27 slot dùng `0` đến `26`.
-
-Language có `vi_VN` và `en_US`. Giữ nguyên key và placeholder khi dịch.
-
-`sounds.yml` hỗ trợ `open`, `open-category`, `select-product`, `amount-change`, `back`, `page`, `confirm`, `success`, `failure` và `insufficient-funds`.
-
-### Giá, tax và market
-
-`price.decimals` điều khiển định dạng giá. Price Guard kiểm tra giá KWorth và craft floor.
-
-Giữ `price.guard.fail-closed: true` khi KWorth đang bật. KShop sẽ chặn giá không kiểm tra được.
-
-Tax tính trên subtotal. Market chỉ hoạt động khi `market-economy.enabled: true` và sản phẩm có `market: true`.
-
-Với `tax.rate-percent: 5.0`, subtotal `200` có tax `10` và tổng `210`.
-
-### Mẫu nhanh
+Rank styles: `flags`, `iris`, `minimal`, `midnight`. Đây không phải One/King.
 
 ```yaml
-starter_food:
-  type: item
-  eco: free
-  large-buy: false
-  material: BREAD
-  page: 1
-  slot: 12
-  price: 0
-  amount: 16
-  name: '&aStarter Bread'
+# ranks/settings.yml
+provider: custom
+custom:
+  set-command: 'perm user {player} group set {rank}'
+  add-command: 'perm user {player} group add {rank}'
 ```
 
-Dùng `eco: free` cho product miễn phí. Không dùng `eco: vault` với `price: 0`.
+Provider: `auto`, `luckperms`, `powerranks`, `custom`. Mở bằng `/ranks` hoặc `/rankshop`.
 
-Đặt `confirm.name` trống để chỉ phát kết quả cuối. Dùng sound ID vanilla như `minecraft:ui.button.click`.
+### Language, sound, webhook và vận hành
+
+Đặt `lang: vi_VN` hoặc `lang: en_US`. Chỉ sửa value trong `lang.yml`. Không sửa YAML key, placeholder, command, permission hoặc Material ID.
+
+`sounds.yml` hỗ trợ `open`, `open-category`, `select-product`, `amount-change`, `back`, `page`, `confirm`, `success`, `failure`, `insufficient-funds`. Đặt `name: ''` để tắt một sound.
+
+```yaml
+market:
+  enabled: true
+  url: 'YOUR_WEBHOOK'
+  minimum-change-percent: 2.5
+  cooldown-seconds: 300
+  notify-increase: true
+  notify-recovery: true
+```
+
+Webhook cần Dynamic Market đang bật. Reset Market bằng `/kshop market reset all` hoặc `/kshop market reset gear.golden_apple`.
+
+Sau khi chỉnh YAML, chạy `/kshop reload` và kiểm tra console. Với thay One/King, restart server.
+
+> **Slot quyết định vị trí, không quyết định số lượng sản phẩm.**

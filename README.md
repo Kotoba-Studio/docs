@@ -1,146 +1,521 @@
-# Kotoba Studio
-
-[![Minecraft Version](https://img.shields.io/badge/Minecraft-1.21.1%2B-brightgreen.svg)](https://papermc.io)
-[![Platform](https://img.shields.io/badge/Platform-Paper%20%7C%20Folia-blue.svg)](https://papermc.io)
-[![Folia Support](https://img.shields.io/badge/Folia-Supported-success.svg)](https://papermc.io/software/folia)
-[![Paper](https://img.shields.io/badge/Paper-Latest%20Build-34A853.svg)](https://papermc.io/downloads/paper)
-[![GitHub](https://img.shields.io/badge/GitHub-Kotoba--Studio-181717.svg?logo=github)](https://github.com/Kotoba-Studio)
-[![Docs](https://img.shields.io/badge/Docs-Kotoba%20Studio-8A5CF6.svg)](https://kotoba-studio.gitbook.io/kotoba-docs)
-
-**Kotoba Studio** là nơi phát triển và phát hành các plugin Minecraft miễn phí, tập trung vào **hiệu năng, sự đơn giản, khả năng tùy chỉnh và trải nghiệm sử dụng thực tế**.
-
-Các plugin được phát triển chủ yếu cho hệ sinh thái Minecraft server hiện đại, với hỗ trợ từ **Minecraft 1.21.1** đến các phiên bản và build Paper/Folia mới trong phạm vi tương thích của từng plugin.
-
+---
+description: Hướng dẫn cài đặt, cấu hình và vận hành KShop R05 CleanMenu.
 ---
 
-## Compatibility
+# KShop R05
 
-Các plugin hiện tại của Kotoba Studio hướng tới:
+## KShop R05 — Releases / CleanMenu
 
-- **Minecraft 1.21.1 trở lên**
-- **Paper**
-- **Folia**
-- Các build Paper/Folia mới
+> **KShop R05 — Releases / CleanMenu**\
+> Shop GUI và Economy System cho Minecraft Server.\
+> **Developer:** Kotoba Studio\
+> **Minecraft:** 1.21+\
+> **Paper / Folia / Canvas:** Tương thích qua scheduler bridge.
 
-Khả năng tương thích cụ thể có thể khác nhau giữa từng plugin.
+### Giới thiệu và cài đặt
 
-> [!NOTE]
-> Kotoba Studio ưu tiên các phiên bản Minecraft hiện đại. Các phiên bản thấp hơn `1.21.1` không nằm trong phạm vi hỗ trợ chính thức.
+#### KShop là gì?
 
----
+KShop là plugin Shop GUI. Bạn xây dựng toàn bộ cửa hàng bằng YAML.
 
-## Security & Transparency
+**Tính năng chính**
 
-Các plugin miễn phí được phát hành chính thức bởi Kotoba Studio:
+* Tạo shop và category không cần sửa code.
+* Tự động phân trang và hỗ trợ slot riêng từng sản phẩm.
+* Hỗ trợ item product, command product, Vault, KShards, PlayerPoints và free product.
+* Dynamic Market, tax, Price Guard và Rank Shop.
+* GUI, ngôn ngữ, âm thanh và Discord Market Webhook tùy chỉnh.
+* One Setup và King Setup riêng.
 
-- Không chủ đích obfuscate mã plugin để che giấu hoạt động.
-- Không chủ đích chứa backdoor, RAT, token stealer hoặc mã độc.
-- Không cố tình thực hiện các hành vi nguy hiểm không liên quan đến chức năng plugin.
-- Được rà soát và thử nghiệm trước khi phát hành trong khả năng của dự án.
+#### Cài đặt
 
-> [!IMPORTANT]
-> Điều này không đồng nghĩa với việc phần mềm hoàn toàn không thể có bug hoặc lỗ hổng. Nếu phát hiện vấn đề, hãy báo cáo qua Discord hoặc GitHub chính thức.
+Đưa file sau vào thư mục `plugins/`, rồi khởi động server:
 
----
+```
+KShop-R05-Releases-CleanMenu.jar
+```
 
-## Official Downloads
+KShop tạo cấu trúc sau:
 
-Chỉ nên tải plugin từ các nguồn chính thức của **Kotoba Studio**.
+```
+plugins/KShop/
+├── config.yml
+├── lang.yml
+├── shops.yml
+├── sounds.yml
+├── webhooks.yml
+├── shops/
+│   ├── blocks.yml
+│   ├── farm.yml
+│   ├── food.yml
+│   ├── gear.yml
+│   ├── shards.yml
+│   ├── redstone.yml
+│   ├── nether.yml
+│   ├── end.yml
+│   └── utility.yml
+└── ranks/
+    ├── settings.yml
+    └── styles/
+```
 
-> [!CAUTION]
-> Không sử dụng các file `.jar` được reupload, chỉnh sửa, crack hoặc phân phối lại bởi bên thứ ba không rõ nguồn gốc.
+* `config.yml` — Cấu hình hệ thống.
+* `shops.yml` — Layout GUI.
+* `shops/*.yml` — Shop và sản phẩm.
+* `lang.yml` — Ngôn ngữ.
+* `sounds.yml` — Âm thanh.
+* `webhooks.yml` — Discord Market Webhook.
+* `ranks/` — Rank Shop.
 
-Kotoba Studio không chịu trách nhiệm đối với thiệt hại phát sinh từ plugin:
+#### Menu mặc định
 
-- Đã bị chỉnh sửa.
-- Được reupload bởi bên thứ ba.
-- Không có nguồn phát hành xác minh được.
-- Bị chèn backdoor hoặc mã độc sau khi rời khỏi nguồn chính thức.
+CleanMenu đặt các category tại slot `10` đến `16`:
 
----
+```
+10 → Farm       11 → Food       12 → Gear
+13 → Shards     14 → Redstone   15 → Nether
+16 → End
+```
 
-## AI-Assisted Development
+`Blocks` và `Utility` bị tắt mặc định:
 
-Các plugin và công cụ của Kotoba Studio được xây dựng với sự hỗ trợ của **AI** trong một số giai đoạn phát triển.
+```yaml
+enabled: false
+menu-slot: -1
+```
 
-AI có thể được sử dụng để:
+Để bật lại, đặt `enabled: true`, chọn `menu-slot`, rồi chạy:
 
-- Phân tích và cải thiện code.
-- Phát hiện lỗi tiềm ẩn.
-- Refactor và tối ưu hiệu năng.
-- Kiểm tra logic.
-- Hỗ trợ debug.
-- Xây dựng documentation.
+```
+/kshop reload
+```
 
-AI **không thay thế hoàn toàn quá trình kiểm tra kỹ thuật**.
+### Tạo shop, page và product
 
-Các bản phát hành vẫn được rà soát, build và thử nghiệm trước khi public trong khả năng của dự án.
+#### Tạo shop mới
 
----
+Tạo `plugins/KShop/shops/ores.yml`:
 
-## Support Policy
+```yaml
+enabled: true
+title: '&bᴏʀᴇs'
+icon: DIAMOND_ORE
+menu-slot: 17
 
-Kotoba Studio phát triển các plugin miễn phí và không cung cấp SLA cho các bản public.
+pages:
+  1:
+    items:
+      coal:
+        eco: vault
+        slot: 9
+        material: COAL
+        price: 20
+        amount: 1
 
-- Không có lịch cập nhật cố định.
-- Không đảm bảo mọi plugin sẽ được duy trì vô thời hạn.
-- Plugin có thể thay đổi hướng phát triển hoặc ngừng phát triển.
-- Một số plugin có thể chỉ nhận bug fix khi cần thiết.
-- Không đảm bảo tương thích vĩnh viễn với mọi phiên bản Minecraft.
-- Không hỗ trợ các bản plugin đã bị chỉnh sửa không chính thức.
+      iron:
+        eco: vault
+        slot: 10
+        material: IRON_INGOT
+        price: 50
+        amount: 1
+```
 
----
+Tên file `ores.yml` là Shop ID `ores`. Reload, rồi mở shop bằng:
 
-## Before Updating
+```
+/kshop reload
+/shop ores
+```
 
-Trước khi cập nhật plugin trên server production:
+#### Tạo page
 
-1. Sao lưu dữ liệu server.
-2. Sao lưu thư mục cấu hình plugin.
-3. Đọc changelog của phiên bản mới.
-4. Kiểm tra dependency.
-5. Kiểm tra phiên bản Minecraft và Paper/Folia.
-6. Test trên server riêng nếu có thể.
+Schema R05 nhóm sản phẩm trong `pages`. Không đặt `page: 1` trong từng item.
 
-> [!WARNING]
-> Đặc biệt nên backup trước khi cập nhật các plugin liên quan đến economy, inventory, database hoặc dữ liệu người chơi.
+```yaml
+pages:
+  1:
+    items:
+      diamond:
+        eco: vault
+        material: DIAMOND
+        price: 500
+  2:
+    items:
+      emerald:
+        eco: vault
+        material: EMERALD
+        price: 350
+```
 
----
+#### Auto Pagination
 
-## Bug Reports
+Nếu King có 9 product slots và shop có 20 sản phẩm, KShop tạo:
 
-Khi báo lỗi, nên cung cấp:
+```
+Page 1 → 9
+Page 2 → 9
+Page 3 → 2
+```
 
-- Tên plugin.
-- Phiên bản plugin.
-- Phiên bản Minecraft.
-- Paper/Folia build.
-- Java version.
-- Log hoặc stack trace.
-- Các bước tái hiện lỗi.
-- Danh sách plugin liên quan nếu cần.
+Sản phẩm vượt quá số slot không tự biến mất.
 
-Thông tin càng đầy đủ thì quá trình xác định và sửa lỗi càng nhanh.
+#### Product cơ bản
 
----
+```yaml
+diamond:
+  enabled: true
+  eco: vault
+  slot: 12
+  material: DIAMOND
+  price: 500
+  amount: 1
+  name: '&bᴅɪᴀᴍᴏɴᴅ'
+  lore:
+    - '&7ɢɪá: &f500'
+  large-buy: true
+  market: true
+  permission: ''
+```
 
-## Official Links
+#### Slot riêng từng item
 
-- **Discord:** [dsc.gg/k-studio](https://dsc.gg/k-studio)
-- **GitHub:** [github.com/Kotoba-Studio](https://github.com/Kotoba-Studio)
-- **Documentation:** [kotoba-studio.gitbook.io/kotoba-docs](https://kotoba-studio.gitbook.io/kotoba-docs)
+Khuyến nghị dùng `slot`. KShop vẫn tương thích với `slots`.
 
----
+```yaml
+slot: 12
+```
 
-## Notice
+```yaml
+slots: 12
+# Hoặc
+slots: [12]
+```
 
-Việc sử dụng plugin của Kotoba Studio đồng nghĩa với việc người quản trị server tự chịu trách nhiệm về backup dữ liệu, cấu hình và kiểm tra compatibility trước khi triển khai trên môi trường production.
+Không khai báo slot thì KShop chọn slot trống từ layout hiện tại. Hai item trùng slot sẽ được xếp vào product slot trống kế tiếp.
 
-Kotoba Studio cố gắng cung cấp các plugin ổn định và an toàn nhất có thể, nhưng không thể đảm bảo phần mềm hoàn toàn không có lỗi trong mọi môi trường hoặc mọi tổ hợp plugin.
+#### Item và command product
 
----
+`type: item` là mặc định và có thể bỏ:
 
-**Kotoba Studio**  
-Minecraft Plugins & Tools
+```yaml
+diamond:
+  type: item
+  eco: vault
+  material: DIAMOND
+  price: 500
+  amount: 1
+```
 
-[Documentation](https://kotoba-studio.gitbook.io/kotoba-docs) · [Discord](https://dsc.gg/k-studio) · [GitHub](https://github.com/Kotoba-Studio)
+Command product dùng một hoặc nhiều lệnh:
+
+```yaml
+zombie_spawner:
+  type: command
+  eco: shards
+  slot: 10
+  price: 15000
+  amount: 1
+  large-buy: false
+  market: false
+  display:
+    material: SPAWNER
+    name: '&dᴢᴏᴍʙɪᴇ sᴘᴀᴡɴᴇʀ'
+  commands:
+    - 'smartspawner give {player} zombie {amount}'
+```
+
+Hỗ trợ placeholder `{player}` và `{amount}`. Dùng `command: '...'` cho một lệnh, hoặc `commands` cho nhiều lệnh.
+
+Đặt `permission: 'kshop.vip'` để giới hạn product. Dùng `permission: ''` để không giới hạn. Đặt `enabled: false` để tắt sản phẩm.
+
+### GUI, slot, One và King
+
+#### Layout `shops.yml`
+
+```yaml
+root:
+  title: '&8ᴇᴄᴏɴᴏᴍʏ sᴛᴏʀᴇ'
+  size: 27
+  category-slots: [10, 11, 12, 13, 14, 15, 16]
+
+category:
+  title: '&8{category}'
+  size: 27
+  product-slots: [9, 10, 11, 12, 13, 14, 15, 16, 17]
+```
+
+Inventory size hợp lệ: `9`, `18`, `27`, `36`, `45`, `54`. GUI có `size: 27` không thể dùng `slot: 40`.
+
+`product-slots` là số vị trí sản phẩm **trên mỗi page**. Đây không phải tổng số sản phẩm tối đa của shop.
+
+#### Layout riêng, navigation và selector
+
+Đặt layout riêng cho category trong `layouts`:
+
+```yaml
+layouts:
+  gear: [2, 3, 4, 5, 6, 9, 10, 11, 12, 13, 14, 15, 16, 17]
+```
+
+Gear có 14 slots mỗi page. Các category khác vẫn dùng layout mặc định.
+
+```yaml
+navigation:
+  previous:
+    slot: 18
+    material: ARROW
+  back:
+    slot: 22
+    material: RED_STAINED_GLASS_PANE
+  next:
+    slot: 26
+    material: ARROW
+
+selector:
+  title: '&8ᴍᴜᴀ {product}'
+  size: 27
+  product-slot: 13
+  amount-slots: [9, 10, 11, 15, 16, 17]
+  back:
+    slot: 21
+  confirm:
+    slot: 23
+```
+
+Navigation slots được dành riêng. Không dùng chúng làm product slots.
+
+#### One và King Setup
+
+* **One** ưu tiên layout rộng. Gear có 14 item slots. Navigation: Previous `18`, Back `22`, Next `26`.
+* **King** dùng layout compact. Product slots `9–17`. Navigation: Back `18`, Previous `19`, Next `26`.
+
+Giải nén `KShop-R05-Setup-One-CleanMenu.zip` hoặc `KShop-R05-Setup-King-CleanMenu.zip` vào `plugins/KShop/`.
+
+> **Cảnh báo:** Setup có thể ghi đè `shops.yml` và `shops/`. Hãy backup shop trước. Nếu chỉ đổi layout, chỉ thay `shops.yml`.
+
+### Economy, purchase và market
+
+#### Economy và số lượng
+
+```yaml
+eco: vault      # Vault Economy
+eco: shards     # Alias: kshards
+eco: points     # Alias: playerpoints
+eco: free       # Dùng cùng price: 0
+```
+
+`price: 500` đặt giá mỗi base purchase. Paid product nên có `price > 0`. `amount: 16` cho người chơi 16 item mỗi lần mua cơ bản.
+
+Đặt `large-buy: true` để người chơi đổi số lượng trong Selector. Dùng `false` để tắt.
+
+```yaml
+purchase:
+  steps:
+    decrease: [64, 10, 1]
+    increase: [1, 10, 64]
+
+success-message:
+  enabled: false
+
+insufficient-funds-details:
+  enabled: false
+```
+
+#### Tax, Dynamic Market và Price Guard
+
+```yaml
+tax:
+  enabled: true
+  rate-percent: 5.0
+
+market-economy:
+  enabled: true
+  impact-per-item-percent: 0.15
+  maximum-multiplier: 3.0
+  recovery-half-life-minutes: 90
+```
+
+Với giá `1000` và tax `5%`, tổng tiền là `1050`. Mua nhiều làm demand và giá tăng. Giá giảm dần về base price theo thời gian.
+
+Đặt `market: false` cho spawner, rank, command reward và các giá cố định.
+
+```
+/kshop market reset
+/kshop market reset all
+/kshop market reset gear.golden_apple
+```
+
+```yaml
+price:
+  guard:
+    enabled: true
+    fail-closed: true
+    margin-percent: 5.0
+    crafting:
+      enabled: true
+      floors:
+        REDSTONE_BLOCK: 20.0
+        POTATO: 5.0
+```
+
+Price Guard hạn chế cấu hình giá có thể tạo economy exploit.
+
+### Commands, permissions và Rank Shop
+
+#### Commands
+
+```
+/shop
+/shop gear
+/shop farm
+/shop shards
+
+/kshop
+/kshop status
+/kshop reload
+/kshop open <category>
+```
+
+Permission:
+
+```
+kshop.open
+kshop.ranks.open
+kshop.admin
+kshop.admin.status
+kshop.admin.reload
+kshop.admin.style
+kshop.admin.open
+kshop.admin.edit
+kshop.admin.market
+```
+
+`kshop.admin` mặc định dành cho OP.
+
+Các editor command có sẵn:
+
+```
+/kshop price <category> <product> <price>
+/kshop amount <category> <product> <amount>
+/kshop eco <category> <product> <economy>
+```
+
+Với cấu trúc `pages → items` của R05, cách quản trị đáng tin cậy nhất vẫn là sửa `shops/<category>.yml`, rồi chạy `/kshop reload`.
+
+#### Rank Shop
+
+```yaml
+rank-shop:
+  enabled: true
+  style: flags
+```
+
+Mở Rank Shop bằng `/ranks` hoặc `/rankshop`. Permission là `kshop.ranks.open`.
+
+Styles: `flags`, `iris`, `minimal`, `midnight`. Đây không phải One hoặc King. One/King dùng cho Shop chính.
+
+Trong `ranks/settings.yml`:
+
+```yaml
+provider: auto
+```
+
+Provider hỗ trợ: `auto`, `luckperms`, `powerranks`, `custom`.
+
+```yaml
+provider: custom
+custom:
+  set-command: 'perm user {player} group set {rank}'
+  add-command: 'perm user {player} group add {rank}'
+```
+
+Custom provider hỗ trợ `{player}` và `{rank}`.
+
+### Language, sound, webhook và khắc phục lỗi
+
+#### Language và sounds
+
+```yaml
+# config.yml
+lang: vi_VN
+# Hoặc: en_US
+```
+
+Runtime language file là `plugins/KShop/lang.yml`. Sau khi đổi ngôn ngữ, chạy `/kshop reload`.
+
+Bạn có thể thay đổi giá trị hiển thị trong `lang.yml`. Không sửa YAML key, command, permission, placeholder, Material ID hoặc namespace.
+
+```yaml
+# sounds.yml
+enabled: true
+
+success:
+  name: 'minecraft:entity.player.levelup'
+  volume: 0.85
+  pitch: 1.15
+```
+
+Events gồm `open`, `open-category`, `select-product`, `amount-change`, `back`, `page`, `confirm`, `success`, `failure` và `insufficient-funds`.
+
+Đặt `name: ''` để tắt một sound. Đặt `enabled: false` để tắt toàn bộ.
+
+#### Discord Market Webhook
+
+```yaml
+market:
+  enabled: true
+  url: 'YOUR_WEBHOOK'
+  minimum-change-percent: 2.5
+  cooldown-seconds: 300
+  notify-increase: true
+  notify-recovery: true
+```
+
+Bật webhook cùng `market-economy.enabled: true`.
+
+#### Khắc phục lỗi
+
+**Item không xuất hiện**
+
+1. Kiểm tra `enabled: true` và cấu trúc `pages → 1 → items`.
+2. Kiểm tra Material hợp lệ, ví dụ `material: DIAMOND`. Không dùng `AIR`.
+3. Kiểm tra `price` và `eco`. Command product cần `command` hoặc `commands`.
+4. Chạy `/kshop reload` và xem console.
+
+**Item thứ 10+ không xuất hiện**
+
+KShop tự phân trang. Với King, 14 items tạo 9 items ở Page 1 và 5 items ở Page 2. Nếu vẫn thiếu, kiểm tra `product-slots`, layout riêng category, navigation slot, item slot và YAML indentation.
+
+**Category không xuất hiện**
+
+Kiểm tra `enabled: true` và `menu-slot`. Dùng `menu-slot: -1` để tự xếp.
+
+**Plugin bị disabled**
+
+Lỗi `/shop` không chạy chỉ là hậu quả. Tìm lỗi startup trước đó, thường gần dòng:
+
+```
+KShop dừng an toàn vì khởi tạo thất bại
+```
+
+**Economy không hoạt động**
+
+Kiểm tra startup có `Economy hook:`. Sau đó kiểm tra `eco: vault`, `eco: shards` hoặc `eco: points`, cùng plugin economy tương ứng.
+
+#### Update KShop
+
+1. Stop server.
+2. Backup `plugins/KShop/`.
+3. Thay JAR.
+4. Start server.
+5. Kiểm tra startup log.
+6. Test `/shop`.
+7. Test purchase.
+
+Chỉ giữ **một** JAR KShop. Không giữ cả `KShop-old.jar` và `KShop-new.jar`.
+
+> **Slot quyết định vị trí, không quyết định số lượng sản phẩm.**
+>
+> **Thêm shop là thêm một file `.yml`, không cần sửa code.**
+
+Ví dụ: tạo `shops/potions.yml`, chạy `/kshop reload`, rồi shop mới hoạt động.
